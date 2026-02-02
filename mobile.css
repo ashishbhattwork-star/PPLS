@@ -1,0 +1,994 @@
+/* ======================================================
+   MOBILE SAFE MODE – GLOBAL LOCK
+   Applies only on screens <= 768px
+====================================================== */
+@media (max-width: 768px) {
+  /* ---------- GLOBAL RESET ---------- */
+  html,
+  body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  * {
+    max-width: 100%;
+  }
+
+  img,
+  video,
+  svg,
+  canvas {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* ---------- DISABLE DESKTOP CINEMATIC LAYERS ---------- */
+  .hero-bg-layer,
+  .grid-bg,
+  .glow-overlay {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  * {
+    perspective: none !important;
+    transform-style: flat !important;
+  }
+
+  /* ======================================================
+     HEADER – MOBILE MODE
+  ====================================================== */
+  .header {
+    padding: 12px 16px !important;
+    height: auto;
+  }
+
+  /* Hide desktop nav */
+  .header nav {
+    display: none !important;
+  }
+
+  /* Logo resize */
+  .logo img {
+    height: 40px;
+  }
+
+  /* ---------- 3 DOT MENU ---------- */
+  .mobile-menu-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 36px;
+    height: 36px;
+    font-size: 22px;
+    color: #ffffff;
+
+    cursor: pointer;
+    user-select: none;
+  }
+
+  /* ---------- MOBILE NAV PANEL ---------- */
+  .mobile-nav {
+    position: fixed;
+    top: 64px;
+    left: 0;
+    width: 100%;
+
+    background: rgba(2, 6, 23, 0.96);
+    backdrop-filter: blur(14px);
+
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+
+    padding: 24px 20px;
+
+    transform: translateY(-120%);
+    transition: transform 0.35s ease;
+
+    z-index: 9999;
+  }
+
+  .mobile-nav.active {
+    transform: translateY(0);
+  }
+
+  .mobile-nav a {
+    font-size: 16px;
+    font-weight: 700;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .mobile-nav a:last-child {
+    border-bottom: none;
+  }
+
+  .mobile-nav a:hover {
+    color: var(--primary);
+  }
+
+  /* ======================================================
+     SECTIONS – STACK & SAFE
+  ====================================================== */
+  .hero-section {
+    height: auto;
+    padding: 120px 16px 80px;
+  }
+
+  .hero-title {
+    font-size: clamp(2.2rem, 7vw, 3rem);
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  /* ---------- ABSOLUTE → FLOW ---------- */
+  .section-container,
+  .services-section,
+  .strength-section,
+  .model-section,
+  .working-model,
+  .team-section {
+    min-height: auto !important;
+    padding: 60px 16px !important;
+  }
+
+  .central-core {
+    width: 220px;
+    height: 220px;
+  }
+
+  .sub-topic-tile {
+    position: relative !important;
+    width: 100%;
+    max-width: 320px;
+    margin: 12px auto;
+    transform: none !important;
+  }
+
+  /* ---------- GRIDS ---------- */
+  .service-grid,
+  .bento-grid,
+  .wm-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* ---------- MODEL FLOW ---------- */
+  .model-step,
+  .model-step:nth-child(even) {
+    flex-direction: row !important;
+  }
+
+  .step-info {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .step-image-wrapper {
+    display: none;
+  }
+
+  /* ---------- TEAM ---------- */
+  .team-nav {
+    display: none;
+  }
+
+  .team-card {
+    min-width: 220px;
+  }
+
+  /* ---------- FOOTER ---------- */
+  .footer-top {
+    grid-template-columns: 1fr !important;
+    gap: 32px;
+  }
+
+  .footer-brand img {
+    width: 160px;
+  }
+}
+@media (max-width: 768px) {
+  /* Hide desktop nav completely */
+  .header nav {
+    display: none !important;
+  }
+
+  /* Make header a 2-column layout */
+  .header {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+  }
+
+  /* FORCE SHOW 3 DOTS */
+  .mobile-menu-btn {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+
+    width: 36px;
+    height: 36px;
+
+    font-size: 26px;
+    font-weight: 900;
+    color: #ffffff;
+
+    cursor: pointer;
+
+    z-index: 10002; /* ABOVE header & blur */
+  }
+}
+@media (max-width: 768px) {
+  /* Kill fixed cinematic layers */
+  .hero-bg-layer,
+  .grid-bg,
+  .glow-overlay {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    transform: none !important;
+  }
+
+  /* Stop mobile scaling completely */
+  html,
+  body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+}
+@media (max-width: 768px) {
+  .section-container {
+    min-height: auto !important;
+    padding: 60px 16px !important;
+  }
+
+  .central-core {
+    width: 220px;
+    height: 220px;
+    margin-bottom: 24px;
+  }
+
+  .sub-topic-tile {
+    position: relative !important;
+    width: 100%;
+    max-width: 320px;
+    margin: 10px auto;
+    transform: none !important;
+  }
+}
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: clamp(2.2rem, 7vw, 3rem);
+    line-height: 1.15;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+
+  .hero-section {
+    height: auto;
+    padding: 120px 16px 80px;
+  }
+}
+@media (max-width: 768px) {
+  /* COMPLETELY DISABLE NETWORK GRAPH */
+  .line-canvas,
+  svg,
+  .beam {
+    display: none !important;
+  }
+
+  /* Force center alignment */
+  .section-container {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+}
+@media (max-width: 768px) {
+  .sub-topic-tile,
+  .central-core,
+  .section-container * {
+    transform: none !important;
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    bottom: auto !important;
+  }
+}
+/* ======================================================
+   FINAL MOBILE MASTER LOCK – DO NOT EDIT BELOW
+====================================================== */
+@media (max-width: 768px) {
+  html,
+  body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  * {
+    max-width: 100%;
+  }
+
+  /* Kill any leftover absolute overflow */
+  [style*="left"],
+  [style*="right"],
+  [style*="translate"] {
+    transform: none !important;
+  }
+}
+/* ======================================================
+   CORE STRENGTHS – MOBILE HARD FIX
+====================================================== */
+@media (max-width: 768px) {
+  /* Section padding fix */
+  .strength-section {
+    padding: 60px 16px !important;
+    overflow-x: hidden !important;
+  }
+
+  /* Force single column */
+  .strength-section .bento-grid,
+  .strength-section .service-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 20px !important;
+  }
+
+  /* Cards: reset everything desktop added */
+  .strength-section .bento-card,
+  .strength-section .service-card {
+    width: 100% !important;
+    max-width: 100% !important;
+
+    margin: 0 auto !important;
+
+    transform: none !important;
+    translate: none !important;
+
+    left: auto !important;
+    right: auto !important;
+
+    padding: 24px !important;
+  }
+}
+@media (max-width: 768px) {
+  .card-large,
+  .card-featured,
+  .card-tall {
+    grid-column: auto !important;
+    grid-row: auto !important;
+  }
+}
+/* ======================================================
+   HOW WE DO IT / PROCESS SECTION – MOBILE FIX
+====================================================== */
+@media (max-width: 768px) {
+  /* Section container */
+  .how-we-do-it,
+  .process-section,
+  .timeline-section {
+    padding: 60px 16px !important;
+    overflow-x: hidden !important;
+  }
+
+  /* REMOVE vertical timeline line */
+  .how-we-do-it::before,
+  .process-section::before,
+  .timeline-section::before {
+    display: none !important;
+  }
+
+  /* Stage cards – full width stack */
+  .stage,
+  .process-step,
+  .timeline-step {
+    width: 100% !important;
+    max-width: 100% !important;
+
+    margin: 0 0 16px 0 !important;
+    padding: 20px !important;
+
+    transform: none !important;
+    translate: none !important;
+
+    left: auto !important;
+    right: auto !important;
+  }
+
+  /* REMOVE stage icons / circles offset */
+  .stage::before,
+  .process-step::before,
+  .timeline-step::before {
+    display: none !important;
+  }
+
+  /* Kill reveal animations */
+  .reveal,
+  .reveal-left,
+  .reveal-right,
+  .reveal-stagger {
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
+/* ======================================================
+   HOW WE DO IT – FINAL MOBILE NORMALIZATION
+====================================================== */
+@media (max-width: 768px) {
+  /* Stage wrapper becomes normal block */
+  .stage,
+  .process-step,
+  .timeline-step {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+
+    padding: 20px !important;
+    margin-bottom: 16px !important;
+
+    padding-left: 20px !important; /* kill desktop offset */
+  }
+
+  /* Icon becomes inline (NOT absolute) */
+  .stage-icon,
+  .process-icon,
+  .timeline-icon {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+
+    margin-bottom: 12px !important;
+  }
+
+  /* Kill any leftover padding from desktop */
+  .stage-content,
+  .process-content,
+  .timeline-content {
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+  }
+}
+/* ======================================================
+   MODEL SECTION (HOW WE DO IT) – TRUE MOBILE LAYOUT
+   Matches index.html exactly
+====================================================== */
+@media (max-width: 768px) {
+  /* Section spacing */
+  .model-section {
+    padding: 60px 16px !important;
+    overflow-x: hidden !important;
+  }
+
+  /* Remove vertical center line */
+  .model-flow::before {
+    display: none !important;
+  }
+
+  /* Force stacked layout */
+  .model-step {
+    display: block !important;
+    width: 100% !important;
+    margin-bottom: 20px !important;
+
+    transform: none !important;
+  }
+
+  /* Disable alternating desktop layout */
+  .model-step:nth-child(even) {
+    flex-direction: column !important;
+  }
+
+  /* Main card */
+  .step-info {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 20px !important;
+  }
+
+  /* Timeline icon — move INSIDE card */
+  .step-marker {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    transform: none !important;
+
+    margin: 0 0 12px 0 !important;
+
+    width: 44px;
+    height: 44px;
+  }
+
+  /* Hide images on mobile (too wide) */
+  .step-image-wrapper {
+    display: none !important;
+  }
+
+  /* Kill reveal animations */
+  .reveal-card {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+/* ======================================================
+   HAMBURGER MENU – MOBILE ONLY (VISIBLE GUARANTEED)
+====================================================== */
+@media (max-width: 768px) {
+  .mobile-menu-btn {
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+
+    width: 40px;
+    height: 40px;
+
+    cursor: pointer;
+    z-index: 10050; /* above header & blur */
+  }
+
+  .mobile-menu-btn span {
+    display: block;
+    width: 26px;
+    height: 3px;
+    background: #ffffff;
+    border-radius: 3px;
+  }
+
+  /* Optional hover feedback */
+  .mobile-menu-btn:hover span {
+    background: #38bdf8;
+  }
+}
+/* ======================================================
+   AI SOLUTIONS HERO – REMOVE MOBILE GAP
+====================================================== */
+@media (max-width: 768px) {
+  /* Kill forced viewport height */
+  .hero-section {
+    height: auto !important;
+    min-height: unset !important;
+
+    padding-top: 110px !important; /* header safe */
+    padding-bottom: 40px !important; /* NO giant gap */
+  }
+
+  /* Hide scroll indicator on mobile */
+  .scroll-indicator {
+    display: none !important;
+  }
+
+  /* Neutralize background transforms */
+  .hero-bg-layer,
+  .hero-visual {
+    position: absolute !important;
+    transform: none !important;
+  }
+} /* ======================================================
+   AI SOLUTIONS HERO – REMOVE MOBILE GAP
+====================================================== */
+@media (max-width: 768px) {
+  /* Kill forced viewport height */
+  .hero-section {
+    height: auto !important;
+    min-height: unset !important;
+
+    padding-top: 110px !important; /* header safe */
+    padding-bottom: 40px !important; /* NO giant gap */
+  }
+
+  /* Hide scroll indicator on mobile */
+  .scroll-indicator {
+    display: none !important;
+  }
+
+  /* Neutralize background transforms */
+  .hero-bg-layer,
+  .hero-visual {
+    position: absolute !important;
+    transform: none !important;
+  }
+}
+/* ======================================================
+   HERO → ORBIT SEPARATION (MOBILE ONLY)
+====================================================== */
+@media (max-width: 768px) {
+  /* Add breathing space after hero */
+  .hero-section {
+    margin-bottom: 40px !important;
+  }
+
+  /* Push orbit section slightly down */
+  .section-container#orbitSection {
+    padding-top: 40px !important;
+  }
+}
+/* =====================================================
+   WEB DEV PAGE – MOBILE HARD FIX
+===================================================== */
+@media (max-width: 768px) {
+  /* Kill fake full-screen sections */
+  .section {
+    min-height: auto !important;
+    height: auto !important;
+    padding: 80px 16px !important;
+    justify-content: flex-start !important;
+  }
+
+  /* Hero section specifically */
+  .section.hero {
+    padding-top: 120px !important; /* header offset */
+    padding-bottom: 60px !important;
+  }
+
+  /* Remove vertical centering */
+  .hero-grid {
+    align-items: flex-start !important;
+  }
+
+  /* Prevent phantom bottom space */
+  main {
+    overflow-x: hidden;
+  }
+
+  /* Disable smooth scroll bugs */
+  html,
+  body {
+    height: auto !important;
+  }
+}
+@media (max-width: 768px) {
+  .section {
+    min-height: auto !important;
+    height: auto !important;
+    justify-content: flex-start !important;
+    padding: 80px 16px 60px !important;
+  }
+}
+/* =====================================================
+   IT CONSULTING – MOBILE HERO HARD FIX (CORRECT)
+===================================================== */
+@media (max-width: 768px) {
+  .it-hero {
+    min-height: auto !important;
+    height: auto !important;
+    padding: 96px 16px 40px !important;
+  }
+
+  .it-hero-content {
+    max-width: 100% !important;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    gap: 14px;
+  }
+}
+/* =====================================================
+   AI SOLUTIONS – MOBILE HERO GAP FIX (FINAL)
+===================================================== */
+@media (max-width: 768px) {
+  .ai-hero {
+    min-height: auto !important;
+    height: auto !important;
+    padding: 96px 16px 40px !important;
+    justify-content: flex-start !important;
+  }
+
+  .ai-hero h1 {
+    font-size: clamp(2.2rem, 7vw, 3rem);
+  }
+
+  .ai-hero p {
+    font-size: 1rem;
+  }
+}
+/* =====================================================
+   HOW WE WORK – MOBILE CENTERED LAYOUT (FINAL)
+===================================================== */
+@media (max-width: 768px) {
+  /* Section cleanup */
+  .section.process {
+    min-height: auto !important;
+    padding: 56px 16px 56px !important;
+    justify-content: flex-start !important;
+  }
+
+  /* Title */
+  .process-header {
+    width: 100%;
+    text-align: center !important;
+    margin-bottom: 36px !important;
+  }
+
+  .process-header h2 {
+    font-size: 2.2rem !important;
+    margin: 0 auto;
+  }
+
+  /* Steps wrapper */
+  .process-steps {
+    width: 100%;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important; /* 🔥 THIS centers cards */
+    gap: 36px !important;
+    padding: 0 !important;
+  }
+
+  /* Individual cards */
+  .step-card {
+    width: 100%;
+    max-width: 320px; /* clean mobile width */
+    margin: 0 auto; /* 🔥 force centering */
+
+    padding: 22px 20px !important;
+    text-align: center !important;
+
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.035);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+  }
+
+  .step-card h3 {
+    font-size: 1.05rem !important;
+    margin-bottom: 6px;
+  }
+
+  .step-card p {
+    font-size: 0.95rem !important;
+    opacity: 0.7;
+  }
+}
+/* =====================================================
+   HOW WE WORK – GAP FIX (MOBILE FINAL)
+===================================================== */
+@media (max-width: 768px) {
+  /* Kill full-screen centering */
+  .section.process {
+    min-height: auto !important;
+    justify-content: flex-start !important;
+    padding: 40px 16px 48px !important;
+  }
+
+  /* Reduce gap above title */
+  .process-header {
+    margin-bottom: 24px !important;
+    text-align: center;
+  }
+
+  .process-header h2 {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  /* Tighten spacing between title and cards */
+  .process-steps {
+    gap: 24px !important; /* 👈 controls card spacing */
+    padding-top: 8px !important; /* 👈 small breathing space */
+    padding-bottom: 0 !important;
+  }
+}
+/* =====================================================
+   PROCESS SECTION – MOBILE GAP FIX (FINAL)
+===================================================== */
+@media (max-width: 768px) {
+  /* Stop full-screen centering */
+  .section.process {
+    min-height: auto !important;
+    justify-content: flex-start !important;
+    padding-top: 32px !important;
+    padding-bottom: 40px !important;
+  }
+
+  /* Prevent header from stretching */
+  .process-header {
+    height: auto !important;
+    margin-bottom: 24px !important;
+    flex: none !important;
+    text-align: center;
+  }
+
+  .process-header h2 {
+    margin: 0 !important;
+  }
+
+  /* Cards spacing */
+  .process-steps {
+    gap: 24px !important;
+    padding: 0 !important;
+  }
+}
+/* =====================================================
+   FOOTER – FINAL CLEAN & GUARANTEED FIX
+===================================================== */
+
+.footer-white {
+  background: #020617;
+  color: #e5e7eb;
+  padding: 20px;
+}
+
+/* ================= DESKTOP ================= */
+
+.footer-top {
+  max-width: 1400px;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.2fr;
+  gap: 60px;
+
+  padding: 50px;
+  background: rgba(2, 6, 23, 0.65);
+  backdrop-filter: blur(14px);
+  border-radius: 22px;
+}
+
+.footer-brand img {
+  width: 280px;
+  max-width: 100%;
+}
+
+.footer-links h4 {
+  font-size: 17px;
+  margin-bottom: 14px;
+  color: #ffffff;
+}
+
+.footer-links a {
+  display: block;
+  font-size: 15px;
+  margin-bottom: 10px;
+  color: #c7d2fe;
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  color: #38bdf8;
+}
+
+.footer-cta h3 {
+  font-size: 20px;
+  line-height: 1.4;
+  color: #ffffff;
+}
+
+/* ================= BOTTOM ================= */
+
+.footer-bottom {
+  margin-top: 30px;
+  padding-top: 16px;
+  text-align: center;
+  font-size: 13px;
+  color: #94a3b8;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* =====================================================
+   MOBILE – PERFECT ALIGNMENT
+===================================================== */
+
+@media (max-width: 768px) {
+  .footer-top {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "brand brand"
+      "company services"
+      "cta cta";
+    gap: 24px;
+    padding: 28px 22px;
+  }
+
+  .footer-brand {
+    grid-area: brand;
+    display: flex;
+    justify-content: center;
+  }
+
+  .footer-brand img {
+    width: 140px;
+  }
+
+  .company-links {
+    grid-area: company;
+    text-align: left;
+  }
+
+  .services-links {
+    grid-area: services;
+    text-align: left;
+  }
+
+  .footer-cta {
+    grid-area: cta;
+    text-align: center;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .footer-cta h3 {
+    font-size: 14px;
+    opacity: 0.85;
+  }
+
+  .footer-bottom {
+    font-size: 11px;
+    opacity: 0.6;
+  }
+}
+/* ======================================================
+   WEB DEV PAGE – HIDE HERO GIF (MOBILE ONLY)
+====================================================== */
+
+@media (max-width: 768px) {
+  .section.hero .hero-visual-side {
+    display: none !important;
+  }
+} /* ================= MOBILE SERVICES DROPDOWN FIX ================= */
+@media (max-width: 768px) {
+  .mobile-dropdown .dropdown-menu {
+    display: none;
+  }
+
+  .mobile-dropdown.active .dropdown-menu {
+    display: block;
+  }
+}
+@media (max-width: 992px) {
+  .footer-white {
+    padding: 60px 30px 25px;
+  }
+
+  .footer-top {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+
+  .footer-cta {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 600px) {
+  .footer-top {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .footer-brand img {
+    margin: 0 auto;
+  }
+
+  .footer-social {
+    justify-content: center;
+  }
+
+  .footer-cta h3 {
+    font-size: 18px;
+  }
+
+  .linkedin-icon {
+    width: 46px;
+    height: 46px;
+  }
+}

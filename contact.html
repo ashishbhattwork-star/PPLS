@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us | PPLS Consultancy LLP</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- GLOBAL SITE CSS (HEADER + FOOTER) -->
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="mobile.css" />
+    <script src="script.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+      body {
+        min-height: 100vh;
+        background: radial-gradient(
+          circle at top left,
+          #0f2027,
+          #203a43,
+          #2c5364
+        );
+        overflow-x: hidden;
+        color: #fff;
+      }
+
+      /* Floating orbs */
+      .orb {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(60px);
+        opacity: 0.5;
+        animation: float 10s infinite ease-in-out;
+      }
+      .orb.one {
+        width: 300px;
+        height: 300px;
+        background: #00c6ff;
+        top: 10%;
+        left: 5%;
+      }
+      .orb.two {
+        width: 350px;
+        height: 350px;
+        background: #f7971e;
+        bottom: 10%;
+        right: 5%;
+        animation-delay: 2s;
+      }
+      @keyframes float {
+        0% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-40px);
+        }
+        100% {
+          transform: translateY(0);
+        }
+      }
+
+      /* Layout */
+      .contact-section {
+        min-height: 100vh;
+        padding: 90px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .contact-wrapper {
+        display: grid;
+        grid-template-columns: 1fr 1.2fr;
+        gap: 40px;
+        max-width: 1100px;
+        width: 100%;
+      }
+
+      /* Info card */
+      .info-card {
+        background: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(15px);
+        border-radius: 20px;
+        padding: 40px;
+        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
+        opacity: 0;
+        transform: translateY(50px);
+        transition: 1s ease;
+      }
+      .info-card.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .info-item {
+        margin-bottom: 25px;
+      }
+      .info-item h4 {
+        color: #00c6ff;
+        margin-bottom: 8px;
+      }
+      .info-item p,
+      .info-item a {
+        font-size: 0.95rem;
+        opacity: 0.85;
+        color: #fff;
+        line-height: 1.6;
+        text-decoration: none;
+      }
+      .info-item a:hover {
+        color: #00c6ff;
+      }
+
+      /* Map */
+      .map-box {
+        margin-top: 30px;
+        border-radius: 16px;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        transition: 0.4s;
+      }
+      .map-box:hover {
+        transform: scale(1.02);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+      }
+      .map-box iframe {
+        width: 100%;
+        height: 260px;
+        border: 0;
+        filter: grayscale(20%) contrast(1.1);
+      }
+
+      /* Form card */
+      .contact-card {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(15px);
+        border-radius: 20px;
+        padding: 40px;
+        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
+        opacity: 0;
+        transform: translateY(50px);
+        transition: 1s ease;
+      }
+      .contact-card.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .contact-card h2 {
+        font-size: 2.4rem;
+        margin-bottom: 10px;
+      }
+      .contact-card p {
+        opacity: 0.8;
+        margin-bottom: 30px;
+      }
+
+      /* Form */
+      .form-group {
+        position: relative;
+        margin-bottom: 25px;
+      }
+      .form-group input,
+      .form-group textarea {
+        width: 100%;
+        padding: 14px;
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 10px;
+        color: #fff;
+        font-size: 1rem;
+        outline: none;
+      }
+      .form-group textarea {
+        min-height: 120px;
+        resize: none;
+      }
+      .form-group label {
+        position: absolute;
+        top: 50%;
+        left: 14px;
+        transform: translateY(-50%);
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.6);
+        pointer-events: none;
+        transition: 0.3s;
+      }
+      .form-group input:focus,
+      .form-group textarea:focus {
+        border-color: #00c6ff;
+      }
+      .form-group input:focus + label,
+      .form-group input:not(:placeholder-shown) + label,
+      .form-group textarea:focus + label,
+      .form-group textarea:not(:placeholder-shown) + label {
+        top: -8px;
+        left: 10px;
+        font-size: 0.75rem;
+        background: rgba(15, 32, 39, 0.9);
+        padding: 0 6px;
+        border-radius: 6px;
+        color: #00c6ff;
+      }
+
+      /* Magnetic button */
+      .contact-btn {
+        width: 100%;
+        padding: 14px;
+        border: none;
+        border-radius: 12px;
+        background: linear-gradient(135deg, #00c6ff, #0072ff);
+        color: #fff;
+        font-size: 1rem;
+        cursor: pointer;
+        box-shadow: 0 10px 30px rgba(0, 198, 255, 0.4);
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
+        will-change: transform;
+      }
+      .contact-btn:hover {
+        box-shadow: 0 15px 40px rgba(0, 198, 255, 0.6);
+      }
+
+      /* Responsive */
+      @media (max-width: 900px) {
+        .contact-wrapper {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- ================= HEADER ================= -->
+    <div id="header"></div>
+
+    <div class="orb one"></div>
+    <div class="orb two"></div>
+
+    <section class="contact-section">
+      <div class="contact-wrapper">
+        <!-- INFO + MAP -->
+        <div class="info-card">
+          <div class="info-item">
+            <h4>Address</h4>
+            <p>
+              PPLS Consultancy LLP,<br />
+              Kaushik Residency,<br />
+              Kaushalya Colony,<br />
+              Bachupally,<br />
+              Hyderabad – 500090, India
+            </p>
+          </div>
+
+          <div class="info-item">
+            <h4>Email</h4>
+            <a href="mailto:sandeep@pplsconsultancy.com">
+              sandeep@pplsconsultancy.com
+            </a>
+          </div>
+
+          <div class="info-item">
+            <h4>Contact</h4>
+            <a href="tel:+919010549700"> +91 90105 49700 </a>
+          </div>
+
+          <div class="map-box">
+            <iframe
+              loading="lazy"
+              allowfullscreen
+              referrerpolicy="no-referrer-when-downgrade"
+              src="https://www.google.com/maps?q=Kaushik%20Residency%2C%20Kaushalya%20Colony%2C%20Bachupally%2C%20Hyderabad%20500090&output=embed"
+            >
+            </iframe>
+          </div>
+        </div>
+
+        <!-- FORM -->
+        <div class="contact-card">
+          <h2>Get in Touch</h2>
+          <p>We’ll get back to you within 24 hours.</p>
+
+          <form
+            action="https://formsubmit.co/sandeep@pplsconsultancy.com"
+            method="POST"
+          >
+            <!-- REQUIRED FOR EMAIL -->
+            <input
+              type="hidden"
+              name="_subject"
+              value="New Contact Form Submission - PPLS Consultancy"
+            />
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="_template" value="table" />
+
+            <div class="form-group">
+              <input type="text" name="name" required placeholder=" " />
+              <label>Your Name</label>
+            </div>
+
+            <div class="form-group">
+              <input type="email" name="email" required placeholder=" " />
+              <label>Email Address</label>
+            </div>
+
+            <div class="form-group">
+              <input type="tel" name="phone" required placeholder=" " />
+              <label>Phone Number</label>
+            </div>
+
+            <div class="form-group">
+              <textarea name="message" required placeholder=" "></textarea>
+              <label>Your Message</label>
+            </div>
+
+            <button type="submit" class="contact-btn" id="magneticBtn">
+              Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+    <div id="footer"></div>
+
+    <!-- ================= HEADER / FOOTER LOADER ================= -->
+    <script>
+      fetch("header.html")
+        .then((res) => res.text())
+        .then((data) => (document.getElementById("header").innerHTML = data));
+
+      fetch("footer.html")
+        .then((res) => res.text())
+        .then((data) => (document.getElementById("footer").innerHTML = data));
+    </script>
+
+    <script>
+      /* Reveal animation */
+      const cards = document.querySelectorAll(".info-card, .contact-card");
+      window.addEventListener("scroll", () => {
+        cards.forEach((card) => {
+          if (card.getBoundingClientRect().top < window.innerHeight - 100) {
+            card.classList.add("show");
+          }
+        });
+      });
+      window.dispatchEvent(new Event("scroll"));
+
+      /* Vertical-only ultra subtle magnetic hover */
+      const btn = document.getElementById("magneticBtn");
+      const isTouch = "ontouchstart" in window || navigator.maxTouchPoints > 0;
+
+      if (!isTouch) {
+        btn.addEventListener("mousemove", (e) => {
+          const r = btn.getBoundingClientRect();
+          const y = e.clientY - (r.top + r.height / 2);
+          btn.style.transform = `translateY(${y * 0.03}px)`;
+        });
+
+        btn.addEventListener("mouseleave", () => {
+          btn.style.transform = "translateY(0)";
+        });
+      }
+    </script>
+  </body>
+</html>

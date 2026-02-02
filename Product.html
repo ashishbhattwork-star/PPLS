@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PPLS | AI Enabled CX For Utilities</title>
+
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="styles.css" />
+
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Product Page CSS -->
+    <link rel="stylesheet" href="Product.css" />
+    <link rel="stylesheet" href="mobile.css" />
+  </head>
+
+  <script src="script.js"></script>
+  <body>
+    <!-- ================= HEADER ================= -->
+    <div id="header"></div>
+
+    <!-- ================= HERO ================= -->
+    <section class="hero">
+      <h1 class="hero-title reveal">AI Enabled CX For Utilities</h1>
+
+      <div class="ai-orb float">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      <p class="hero-sub reveal delay">
+        Intelligent automation, insights, and orchestration for modern utilities
+      </p>
+    </section>
+
+    <!-- ================= FEATURES ================= -->
+    <section class="features">
+      <div class="feature-card" data-scroll>
+        <h3>System Navigation Guide</h3>
+        <p>
+          Guide your teams intelligently through complex utility applications
+          with an AI co-pilot for every system.
+        </p>
+      </div>
+
+      <div class="feature-card" data-scroll>
+        <h3>Customer Profile</h3>
+        <p>
+          Visualize customer demographics and behavior patterns to enable
+          hyper-personalized utility services.
+        </p>
+      </div>
+
+      <div class="feature-card" data-scroll>
+        <h3>Workflow Automation Engine</h3>
+        <p>
+          Automatically create and optimize workflows from service orders to
+          outage management using AI.
+        </p>
+      </div>
+
+      <div class="feature-card" data-scroll>
+        <h3>AI Business Intelligence</h3>
+        <p>
+          Get real-time insights with AI-curated dashboards that adapt
+          automatically to your operational role.
+        </p>
+      </div>
+
+      <div class="feature-card" data-scroll>
+        <h3>Seamless Integration</h3>
+        <p>
+          Connect Oracle Cloud, CC&B, and MDM seamlessly with existing
+          enterprise systems for unified data.
+        </p>
+      </div>
+      <div class="feature-card" data-scroll>
+        <h3>Customer History Insights</h3>
+        <p>
+          Track payment trends and credit risk through interactive financial
+          timelines for improved revenue assurance and support.
+        </p>
+      </div>
+      <div class="feature-card" data-scroll>
+        <h3>Task Management Hub</h3>
+        <p>
+          Transform team tasks into a clear visual workflow to boost
+          productivity and track completion seamlessly.
+        </p>
+      </div>
+      <div class="feature-card" data-scroll>
+        <h3>AI Conversation Assistant</h3>
+        <p>
+          Resolve complex customer inquiries and provide real-time operational
+          guidance to field teams with 24/7 AI-powered support.
+        </p>
+      </div>
+      <div class="feature-card" data-scroll>
+        <h3>Process Flow Mapping</h3>
+        <p>
+          Process Flow Mapping — See your utility workflows mapped intelligently
+          to instantly spot bottlenecks and automate complex operational
+          procedures.
+        </p>
+      </div>
+    </section>
+    <!-- ================= FOOTER ================= -->
+    <div id="footer"></div>
+    <!-- ================= JS ================= -->
+    <script src="Product.js"></script>
+
+    <!-- Header & Footer Loader -->
+    <script>
+      fetch("header.html")
+        .then((res) => res.text())
+        .then((data) => {
+          document.getElementById("header").innerHTML = data;
+        });
+
+      fetch("footer.html")
+        .then((res) => res.text())
+        .then((data) => {
+          document.getElementById("footer").innerHTML = data;
+        });
+    </script>
+  </body>
+</html>

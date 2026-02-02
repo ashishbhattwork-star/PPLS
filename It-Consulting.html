@@ -13,17 +13,14 @@
 
     <!-- Global CSS -->
     <link rel="stylesheet" href="styles.css" />
-
-    <!-- Page CSS -->
-    <link rel="stylesheet" href="it-consulting.css" />
-    <link rel="stylesheet" href="Mobile.css" />
+    <link rel="stylesheet" href="mobile.css" />
   </head>
 
   <body>
-    <!-- HEADER -->
+    <!-- ================= HEADER ================= -->
     <div id="header"></div>
 
-    <!-- HERO -->
+    <!-- ================= HERO ================= -->
     <section class="it-hero">
       <div class="hero-bg"></div>
 
@@ -48,7 +45,7 @@
       </div>
     </section>
 
-    <!-- SERVICES -->
+    <!-- ================= SERVICES ================= -->
     <section class="it-services">
       <div class="section-head reveal">
         <h2>What We Deliver</h2>
@@ -89,7 +86,7 @@
       </div>
     </section>
 
-    <!-- CTA -->
+    <!-- ================= CTA ================= -->
     <section class="it-cta">
       <div class="cta-box reveal">
         <h2>Let’s Build Your IT Advantage</h2>
@@ -101,11 +98,30 @@
       </div>
     </section>
 
-    <!-- FOOTER -->
+    <!-- ================= FOOTER ================= -->
     <div id="footer"></div>
 
-    <!-- JS -->
+    <!-- ================= JS ================= -->
     <script src="it-consulting.js"></script>
     <script src="script.js"></script>
+
+    <!-- ================= HEADER & FOOTER LOADER ================= -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        fetch("header.html")
+          .then((res) => res.text())
+          .then((data) => {
+            const header = document.getElementById("header");
+            if (header) header.innerHTML = data;
+          });
+
+        fetch("footer.html")
+          .then((res) => res.text())
+          .then((data) => {
+            const footer = document.getElementById("footer");
+            if (footer) footer.innerHTML = data;
+          });
+      });
+    </script>
   </body>
 </html>

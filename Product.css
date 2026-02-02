@@ -1,0 +1,182 @@
+/* RESET */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background: #050b18;
+  color: white;
+  overflow-x: hidden;
+}
+
+/* ================= HERO ================= */
+.hero {
+  height: 100vh;
+  padding: 0 10vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+
+  background: linear-gradient(
+      to right,
+      rgba(5, 11, 24, 0.95),
+      rgba(5, 11, 24, 0.5),
+      rgba(5, 11, 24, 0.1)
+    ),
+    url("Assets/hero.jpg") center/cover no-repeat;
+
+  /* Feature: Background image stays fixed while text moves */
+  background-attachment: fixed;
+}
+
+/* TEXT REVEAL */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  animation: fadeUp 1s ease forwards;
+}
+.reveal.delay {
+  animation-delay: 0.4s;
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-title {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  max-width: 900px;
+}
+.hero-sub {
+  margin-top: 24px;
+  max-width: 560px;
+  color: #d6e0f5;
+  line-height: 1.6;
+}
+
+/* AI ORB */
+.ai-orb {
+  position: absolute;
+  right: 12%;
+  top: 50%;
+  width: 160px;
+  height: 160px;
+  transform: translateY(-50%);
+}
+.ai-orb span {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 180, 255, 0.35);
+  animation: pulse 6s infinite ease-in-out;
+}
+.ai-orb span:nth-child(2) {
+  animation-delay: -2s;
+  transform: scale(1.2);
+}
+.ai-orb span:nth-child(3) {
+  animation-delay: -4s;
+  transform: scale(1.4);
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.float {
+  animation: floaty 6s ease-in-out infinite;
+}
+@keyframes floaty {
+  0%,
+  100% {
+    transform: translateY(-50%) translateX(0);
+  }
+  50% {
+    transform: translateY(-54%) translateX(6px);
+  }
+}
+
+/* ================= FEATURES ================= */
+.features {
+  padding: 15vh 10vw;
+  background: url("Assets/g2.jpg") center/cover no-repeat;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 40px;
+  perspective: 1400px;
+}
+
+/* ================= CARD ================= */
+.feature-card {
+  position: relative;
+  padding: 36px;
+  border-radius: 22px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.12),
+    rgba(255, 255, 255, 0.03)
+  );
+  backdrop-filter: blur(14px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.45);
+  transform-style: preserve-3d;
+  transition: transform 0.4s ease, opacity 0.8s ease;
+  overflow: hidden; /* Clips the light sweep */
+}
+
+.feature-card h3 {
+  font-size: 1.25rem;
+  margin-bottom: 14px;
+  transform: translateZ(40px);
+}
+.feature-card p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #e8eef8;
+  transform: translateZ(28px);
+}
+
+/* LIGHT SWEEP EFFECT */
+.feature-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at var(--x, 50%) var(--y, 50%),
+    rgba(255, 255, 255, 0.2),
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.feature-card:hover::before {
+  opacity: 1;
+}
+
+/* SCROLL REVEAL STATES */
+[data-scroll] {
+  opacity: 0;
+  transform: translateY(60px);
+}
+
+[data-scroll].in-view {
+  opacity: 1;
+  transform: translateY(0);
+}

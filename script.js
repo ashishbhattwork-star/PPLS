@@ -1,272 +1,77 @@
-/* =====================================================
-   SCROLL REVEAL (SINGLE SOURCE OF TRUTH)
-===================================================== */
-
-const revealElements = document.querySelectorAll(
-  ".reveal, .reveal-card, .model-step, .step-image-wrapper",
-);
-
-const observerOptions = {
-  threshold: 0.12,
-  rootMargin: "0px 0px -60px 0px",
-};
-
-const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add("revealed");
-      revealObserver.unobserve(entry.target);
-    }
-  });
-}, observerOptions);
-
-revealElements.forEach((el) => revealObserver.observe(el));
-
-/* =====================================================
-   ORBIT / AI MODULE SCENE
-===================================================== */
-
-const modules = [
-  {
-    title: "Process Flow Mapping",
-    icon: "fa-diagram-project",
-    desc: "Advanced spatial visualization of utility lifecycles for bottleneck prediction.",
-  },
-  {
-    title: "AI Business Intelligence",
-    icon: "fa-chart-pie",
-    desc: "Strategic grid stability insights derived from deep-learning meter data analysis.",
-  },
-  {
-    title: "Payment History Insights",
-    icon: "fa-vault",
-    desc: "Predictive algorithms detecting anomalous patterns and financial risks.",
-  },
-  {
-    title: "Seamless Integration",
-    icon: "fa-plug",
-    desc: "Middleware connecting legacy SCADA systems to modern edge frameworks.",
-  },
-  {
-    title: "Workflow Automation",
-    icon: "fa-robot",
-    desc: "Autonomous resolution of service requests via robotic process automation.",
-  },
-  {
-    title: "Conversation Assistant",
-    icon: "fa-comment-dots",
-    desc: "Generative AI trained on utility compliance and customer service protocols.",
-  },
-  {
-    title: "Task Hub Management",
-    icon: "fa-tasks",
-    desc: "Omnichannel control center for field operations and repair prioritization.",
-  },
-  {
-    title: "System Navigation Guide",
-    icon: "fa-compass",
-    desc: "Immersive UI assistance reducing agent training friction and system latency.",
-  },
-];
-
-const scene = document.getElementById("orbitSection");
-const svg = document.getElementById("svgCanvas");
-const detailPanel = document.getElementById("detailPanel");
-const panelTitle = document.getElementById("panelTitle");
-const panelDesc = document.getElementById("panelDesc");
-
-function drawScene() {
-  if (!scene || !svg || window.innerWidth <= 768) return;
-
-  svg.innerHTML = "";
-  scene.querySelectorAll(".sub-topic-tile").forEach((e) => e.remove());
-
-  const width = window.innerWidth;
-  const height = window.innerHeight;
-  const centerX = width / 2;
-  const centerY = height / 2;
-
-  const radiusX = Math.min(width * 0.42, 600);
-  const radiusY = Math.min(height * 0.38, 400);
-
-  modules.forEach((mod, i) => {
-    const angle = (i / modules.length) * Math.PI * 2 - Math.PI / 2;
-    const x = centerX + radiusX * Math.cos(angle);
-    const y = centerY + radiusY * Math.sin(angle);
-
-    const tile = document.createElement("div");
-    tile.className = "sub-topic-tile";
-    tile.innerHTML = `
-      <div class="tile-icon-box"><i class="fas ${mod.icon}"></i></div>
-      <div class="tile-title">${mod.title}</div>
-    `;
-
-    tile.style.left = `${x - 110}px`;
-    tile.style.top = `${y - 35}px`;
-
-    const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
-    line.setAttribute("x1", centerX);
-    line.setAttribute("y1", centerY);
-    line.setAttribute("x2", x);
-    line.setAttribute("y2", y);
-    line.setAttribute("class", "beam");
-
-    svg.appendChild(line);
-    scene.appendChild(tile);
-
-    tile.addEventListener("mouseenter", () => {
-      line.classList.add("active");
-      panelTitle.innerText = mod.title;
-      panelDesc.innerText = mod.desc;
-      detailPanel.classList.add("show");
-    });
-
-    tile.addEventListener("mouseleave", () => {
-      line.classList.remove("active");
-      detailPanel.classList.remove("show");
-    });
-  });
-}
-
-window.addEventListener("load", drawScene);
-window.addEventListener("resize", drawScene);
-
-/* =====================================================
-   HERO PARALLAX
-===================================================== */
-
-const hero = document.querySelector(".hero-section");
-const heroBg = document.querySelector(".hero-bg-layer");
-
-let mouseX = 0;
-let mouseY = 0;
-
-function updateHeroTransform() {
-  if (!heroBg) return;
-  heroBg.style.transform = `scale(1.15) translate(${mouseX}px, ${mouseY}px)`;
-}
-
-if (hero && heroBg) {
-  hero.addEventListener("mousemove", (e) => {
-    const rect = hero.getBoundingClientRect();
-    mouseX = ((e.clientX - rect.left) / rect.width - 0.5) * 40;
-    mouseY = ((e.clientY - rect.top) / rect.height - 0.5) * 40;
-    requestAnimationFrame(updateHeroTransform);
-  });
-
-  hero.addEventListener("mouseleave", () => {
-    mouseX = 0;
-    mouseY = 0;
-    requestAnimationFrame(updateHeroTransform);
-  });
-}
-
-/* =====================================================
-   FORCE MODEL VISIBILITY (SAFETY)
-===================================================== */
-
-window.addEventListener("load", () => {
-  document
-    .querySelectorAll(".model-step, .step-image-wrapper")
-    .forEach((el) => el.classList.add("revealed"));
-});
-
-/* =====================================================
-   HEADER SCROLL + MOBILE MENU (FINAL, SINGLE SOURCE)
-===================================================== */
-
-function initHeaderAndMobileMenu() {
-  const header = document.querySelector(".header");
-  const mobileMenuBtn = document.getElementById("mobileMenuBtn");
-  const mobileNav = document.getElementById("mobileNav");
-
-  if (!header) return;
-
-  /* Header scroll */
-  header.classList.add("header-top");
-
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 80) {
-      header.classList.remove("header-top");
-      header.classList.add("header-scrolled");
-    } else {
-      header.classList.remove("header-scrolled");
-      header.classList.add("header-top");
-    }
-  });
-
-  /* Mobile menu */
-  if (mobileMenuBtn && mobileNav) {
-    mobileMenuBtn.addEventListener("click", () => {
-      mobileNav.classList.toggle("active");
-    });
-
-    mobileNav.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", () => {
-        mobileNav.classList.remove("active");
-      });
-    });
-  }
-}
-
-/* =====================================================
-   LOAD HEADER & FOOTER (FETCH)
-===================================================== */
+/* ======================================================
+   GLOBAL SCRIPT – SINGLE SOURCE OF TRUTH
+====================================================== */
 
 document.addEventListener("DOMContentLoaded", () => {
+  loadHeader();
+  loadFooter();
+  initRevealSafe();
+});
+
+/* ================= LOAD HEADER ================= */
+function loadHeader() {
+  const headerContainer = document.getElementById("header");
+  if (!headerContainer) return;
+
   fetch("header.html")
     .then((res) => res.text())
     .then((html) => {
-      document.getElementById("header").innerHTML = html;
-      initHeaderAndMobileMenu();
-    });
+      headerContainer.innerHTML = html;
+
+      initHeaderScroll();
+      initMobileMenu();
+      initDesktopDropdown();
+    })
+    .catch((err) => console.error("Header load error:", err));
+}
+
+/* ================= LOAD FOOTER ================= */
+function loadFooter() {
+  const footerContainer = document.getElementById("footer");
+  if (!footerContainer) return;
 
   fetch("footer.html")
     .then((res) => res.text())
     .then((html) => {
-      document.getElementById("footer").innerHTML = html;
-    });
-});
-/* ======================================================
-   HEADER & SERVICES DROPDOWN – FINAL WORKING VERSION
-====================================================== */
+      footerContainer.innerHTML = html;
+    })
+    .catch((err) => console.error("Footer load error:", err));
+}
 
-document.addEventListener("DOMContentLoaded", () => {
-  initDesktopDropdown();
-  initMobileNav();
-});
+/* ================= HEADER SCROLL ================= */
+function initHeaderScroll() {
+  const header = document.querySelector(".header");
+  if (!header) return;
 
-/* ================= DESKTOP DROPDOWN (HOVER) ================= */
-function initDesktopDropdown() {
-  if (window.innerWidth <= 900) return;
+  header.classList.add("header-top");
 
-  document.querySelectorAll(".desktop-dropdown").forEach((dropdown) => {
-    dropdown.addEventListener("mouseenter", () => {
-      dropdown.classList.add("active");
-    });
-
-    dropdown.addEventListener("mouseleave", () => {
-      dropdown.classList.remove("active");
-    });
+  window.addEventListener("scroll", () => {
+    header.classList.toggle("header-scrolled", window.scrollY > 80);
+    header.classList.toggle("header-top", window.scrollY <= 80);
   });
 }
 
-/* ================= MOBILE NAV ================= */
-function initMobileNav() {
-  const menuBtn = document.getElementById("mobileMenuBtn");
-  const mobileNav = document.getElementById("mobileNav");
+/* ================= MOBILE MENU ================= */
+function initMobileMenu() {
+  const btn = document.getElementById("mobileMenuBtn");
+  const nav = document.getElementById("mobileNav");
 
-  if (!menuBtn || !mobileNav) return;
+  if (!btn || !nav) return;
 
-  /* Hamburger toggle */
-  menuBtn.addEventListener("click", (e) => {
-    e.stopPropagation();
-    mobileNav.classList.toggle("open");
+  btn.addEventListener("click", () => {
+    nav.classList.toggle("active");
+    document.body.classList.toggle("menu-open");
   });
 
-  /* Mobile Services dropdown (ARROW ONLY) */
-  document.querySelectorAll(".mobile-dropdown").forEach((dropdown) => {
-    const toggle = dropdown.querySelector(".mobile-dropdown-toggle");
+  nav.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      nav.classList.remove("active");
+      document.body.classList.remove("menu-open");
+    });
+  });
+
+  nav.querySelectorAll(".mobile-dropdown").forEach((dropdown) => {
+    const toggle = dropdown.querySelector(".mobile-services-btn");
     if (!toggle) return;
 
     toggle.addEventListener("click", (e) => {
@@ -275,41 +80,200 @@ function initMobileNav() {
       dropdown.classList.toggle("open");
     });
   });
+}
 
-  /* Close mobile menu on outside click */
-  document.addEventListener("click", (e) => {
-    if (!mobileNav.contains(e.target) && !menuBtn.contains(e.target)) {
-      mobileNav.classList.remove("open");
-    }
+/* ================= DESKTOP DROPDOWN ================= */
+function initDesktopDropdown() {
+  if (window.innerWidth <= 900) return;
+
+  document.querySelectorAll(".desktop-dropdown").forEach((dropdown) => {
+    dropdown.addEventListener("mouseenter", () =>
+      dropdown.classList.add("active"),
+    );
+    dropdown.addEventListener("mouseleave", () =>
+      dropdown.classList.remove("active"),
+    );
   });
 }
+
+/* ================= SCROLL REVEAL ================= */
+function initRevealSafe() {
+  const elements = document.querySelectorAll(".reveal, .reveal-card");
+  if (!elements.length) return;
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("revealed");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.15 },
+  );
+
+  elements.forEach((el) => observer.observe(el));
+}
 /* ======================================================
-   HEADER DROPDOWN + MOBILE MENU – FINAL
+   ORBIT SECTION – AI ENABLED CX (SAFE & ISOLATED)
 ====================================================== */
 
-document.addEventListener("DOMContentLoaded", () => {
-  initHeaderAndMobileMenu();
-});
+(function initOrbitSection() {
+  const scene = document.getElementById("orbitSection");
+  const svg = document.getElementById("svgCanvas");
 
-function initHeaderAndMobileMenu() {
-  const mobileMenuBtn = document.getElementById("mobileMenuBtn");
-  const mobileNav = document.getElementById("mobileNav");
+  if (!scene || !svg) return; // 🔒 page doesn't use orbit
 
-  /* Hamburger toggle */
-  if (mobileMenuBtn && mobileNav) {
-    mobileMenuBtn.addEventListener("click", () => {
-      mobileNav.classList.toggle("active");
+  const modules = [
+    {
+      key: "process",
+      title: "Process Flow Mapping",
+      icon: "fa-diagram-project",
+      desc: "Advanced spatial visualization of utility lifecycles for bottleneck prediction and optimization.",
+    },
+    {
+      key: "bi",
+      title: "AI Business Intelligence",
+      icon: "fa-chart-pie",
+      desc: "Predictive analytics and AI-driven dashboards enabling smarter enterprise decisions.",
+    },
+    {
+      key: "payment",
+      title: "Payment History Insights",
+      icon: "fa-wallet",
+      desc: "Deep insights into billing patterns, collections, and revenue assurance.",
+    },
+    {
+      key: "integration",
+      title: "Seamless Integration",
+      icon: "fa-plug",
+      desc: "Effortless integration across legacy, cloud, and third-party utility systems.",
+    },
+    {
+      key: "workflow", // 🔥 FIXED
+      title: "Workflow Automation",
+      icon: "fa-robot",
+      desc: "End-to-end automation of operational workflows using AI-driven orchestration.",
+    },
+    {
+      key: "assistant",
+      title: "Conversation Assistant",
+      icon: "fa-comment-dots",
+      desc: "AI-powered conversational interfaces delivering instant customer support.",
+    },
+    {
+      key: "taskhub",
+      title: "Task Hub Management",
+      icon: "fa-list-check",
+      desc: "Centralized task orchestration improving operational efficiency.",
+    },
+    {
+      key: "navigation",
+      title: "System Navigation Guide",
+      icon: "fa-compass",
+      desc: "Intelligent guidance reducing onboarding time and user friction.",
+    },
+  ];
+
+  function drawOrbit() {
+    svg.innerHTML = "";
+    scene.querySelectorAll(".sub-topic-tile").forEach((e) => e.remove());
+
+    const rect = scene.getBoundingClientRect();
+    const cx = rect.width / 2;
+    const cy = rect.height / 2;
+
+    const radiusX =
+      window.innerWidth <= 768
+        ? rect.width * 0.28
+        : Math.min(rect.width * 0.38, 520);
+    const radiusY =
+      window.innerWidth <= 768
+        ? rect.height * 0.24
+        : Math.min(rect.height * 0.32, 360);
+
+    modules.forEach((mod, i) => {
+      const angle = (i / modules.length) * Math.PI * 2 - Math.PI / 2;
+      const x = cx + radiusX * Math.cos(angle);
+      const y = cy + radiusY * Math.sin(angle);
+
+      // SVG beam
+      const line = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "line",
+      );
+      line.setAttribute("x1", cx);
+      line.setAttribute("y1", cy);
+      line.setAttribute("x2", x);
+      line.setAttribute("y2", y);
+      line.setAttribute("class", "beam");
+      svg.appendChild(line);
+
+      // Tile
+      const tile = document.createElement("div");
+      tile.className = "sub-topic-tile";
+      tile.dataset.key = mod.key;
+
+      tile.innerHTML = `
+        <div class="tile-icon-box">
+          <i class="fas ${mod.icon}"></i>
+        </div>
+        <div class="tile-title">${mod.title}</div>
+      `;
+
+      tile.style.left = `${x - 110}px`;
+      tile.style.top = `${y - 30}px`;
+
+      scene.appendChild(tile);
+
+      // Attach interactions
+      attachOrbitEvents(tile, line, mod);
     });
   }
 
-  /* Mobile services dropdown */
-  document.querySelectorAll(".mobile-dropdown").forEach((dropdown) => {
-    const btn = dropdown.querySelector(".mobile-services-btn");
-    if (!btn) return;
+  window.addEventListener("load", drawOrbit);
+  window.addEventListener("resize", drawOrbit);
 
-    btn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      dropdown.classList.toggle("open");
+  /* ======================================================
+     ORBIT DETAIL PANEL – DESKTOP + MOBILE
+  ====================================================== */
+
+  const panel = document.getElementById("detailPanel");
+  const titleEl = document.getElementById("panelTitle");
+  const descEl = document.getElementById("panelDesc");
+
+  function showPanel(mod) {
+    if (!panel || !titleEl || !descEl) return;
+
+    titleEl.textContent = mod.title;
+    descEl.textContent = mod.desc;
+    panel.classList.add("show");
+  }
+
+  function hidePanel() {
+    panel?.classList.remove("show");
+  }
+
+  function attachOrbitEvents(tile, line, mod) {
+    /* Desktop hover */
+    tile.addEventListener("mouseenter", () => {
+      line.classList.add("active");
+      showPanel(mod);
     });
-  });
-}
+
+    tile.addEventListener("mouseleave", () => {
+      line.classList.remove("active");
+      hidePanel();
+    });
+
+    /* Mobile tap */
+    tile.addEventListener("click", (e) => {
+      e.stopPropagation();
+      showPanel(mod);
+    });
+  }
+
+  /* Close panel on outside tap (mobile UX) */
+  document.addEventListener("click", hidePanel);
+})();

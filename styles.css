@@ -2373,3 +2373,19 @@ body {
 .footer-social a:hover .linkedin-icon {
   transform: translateY(-3px);
 }
+/* ======================================================
+   DETAIL PANEL – VISIBILITY + MOBILE POLISH
+====================================================== */
+
+#detailPanel {
+  backdrop-filter: blur(16px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+}
+
+@media (max-width: 768px) {
+  #detailPanel {
+    bottom: 16px;
+    padding: 18px;
+    font-size: 14px;
+  }
+}

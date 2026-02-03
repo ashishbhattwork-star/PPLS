@@ -13,6 +13,7 @@
 
     <!-- Global CSS -->
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="It-Consulting.css" />
     <link rel="stylesheet" href="mobile.css" />
   </head>
 
@@ -22,6 +23,9 @@
 
     <!-- ================= HERO ================= -->
     <section class="it-hero">
+      <!-- Web Dev style background visual -->
+      <div class="it-hero-visual"></div>
+
       <div class="hero-bg"></div>
 
       <div class="it-hero-content reveal">
@@ -102,26 +106,7 @@
     <div id="footer"></div>
 
     <!-- ================= JS ================= -->
-    <script src="it-consulting.js"></script>
     <script src="script.js"></script>
-
-    <!-- ================= HEADER & FOOTER LOADER ================= -->
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        fetch("header.html")
-          .then((res) => res.text())
-          .then((data) => {
-            const header = document.getElementById("header");
-            if (header) header.innerHTML = data;
-          });
-
-        fetch("footer.html")
-          .then((res) => res.text())
-          .then((data) => {
-            const footer = document.getElementById("footer");
-            if (footer) footer.innerHTML = data;
-          });
-      });
-    </script>
+    <script src="it-consulting.js"></script>
   </body>
 </html>

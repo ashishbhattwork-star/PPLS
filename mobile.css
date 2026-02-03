@@ -611,11 +611,9 @@
    HERO → ORBIT SEPARATION (MOBILE ONLY)
 ====================================================== */
 @media (max-width: 768px) {
-  /* Add breathing space after hero */
-  .hero-section {
-    margin-bottom: 40px !important;
-  }
-
+}
+/* Add breathing space after hero */
+.hero-section {
   /* Push orbit section slightly down */
   .section-container#orbitSection {
     padding-top: 40px !important;
@@ -990,5 +988,115 @@
   .linkedin-icon {
     width: 46px;
     height: 46px;
+  }
+}
+/* =====================================================
+   IT CONSULTING – MOBILE FIX (FINAL)
+===================================================== */
+@media (max-width: 768px) {
+  /* ---------- HERO ---------- */
+  .it-hero {
+    min-height: auto !important;
+    height: auto !important;
+    padding: 96px 16px 48px !important;
+    display: block !important;
+  }
+
+  .it-hero-content {
+    max-width: 100% !important;
+  }
+
+  .hero-pill {
+    font-size: 10px;
+    margin-bottom: 16px;
+  }
+
+  .it-hero h1 {
+    font-size: clamp(2rem, 7vw, 2.6rem) !important;
+    line-height: 1.2 !important;
+    margin-bottom: 16px;
+  }
+
+  .it-hero p {
+    font-size: 0.95rem !important;
+    margin-bottom: 24px !important;
+  }
+
+  /* ---------- CTA BUTTONS ---------- */
+  .hero-actions {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 14px !important;
+  }
+
+  .hero-actions a {
+    width: 100% !important;
+    text-align: center;
+  }
+
+  /* ---------- SERVICES ---------- */
+  .it-services {
+    padding: 56px 16px !important;
+  }
+
+  .section-head {
+    margin-bottom: 40px !important;
+  }
+
+  .section-head h2 {
+    font-size: 2rem !important;
+  }
+
+  .services-grid {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+
+  .service-card {
+    padding: 22px !important;
+    border-radius: 20px;
+  }
+
+  .service-card h3 {
+    font-size: 1.15rem;
+  }
+
+  .service-card p {
+    font-size: 0.9rem;
+  }
+
+  /* ---------- CTA SECTION ---------- */
+  .it-cta {
+    padding: 56px 16px !important;
+  }
+
+  .cta-box {
+    padding: 36px 20px !important;
+    border-radius: 22px;
+  }
+
+  .cta-box h2 {
+    font-size: 1.8rem !important;
+  }
+
+  .cta-box p {
+    font-size: 0.95rem;
+    margin-bottom: 24px;
+  }
+}
+@media (max-width: 900px) {
+  .it-hero {
+    padding: 100px 6% 80px;
+    min-height: auto;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+  }
+
+  .services-grid,
+  .process-grid {
+    grid-template-columns: 1fr;
   }
 }

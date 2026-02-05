@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Contact Us | PPLS Consultancy LLP</title>
 
+    <!-- Google Font -->
     <link
       href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap"
       rel="stylesheet"
@@ -245,28 +246,19 @@
           </div>
         </div>
 
-        <!-- FORM -->
+        <!-- NETLIFY FORM -->
         <div class="contact-card">
           <h2>Get in Touch</h2>
           <p>We’ll get back to you within 24 hours.</p>
 
           <form
-            action="https://formsubmit.co/sandeepgahlot83@gmail.com"
+            name="contact"
             method="POST"
+            data-netlify="true"
+            data-netlify-honeypot="bot-field"
           >
-            <input type="hidden" name="_captcha" value="false" />
-            <input type="hidden" name="_template" value="table" />
-            <input
-              type="hidden"
-              name="_subject"
-              value="New Contact Form Submission - PPLS Consultancy"
-            />
-            <input
-              type="hidden"
-              name="_cc"
-              value="sandeep@pplsconsultancy.com"
-            />
-            <input type="hidden" name="_replyto" value="%email%" />
+            <input type="hidden" name="form-name" value="contact" />
+            <input type="hidden" name="bot-field" />
 
             <div class="form-group">
               <input type="text" name="name" required placeholder=" " />

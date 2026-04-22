@@ -1140,3 +1140,83 @@
     display: none !important;
   }
 }
+/* ======================================================
+   PRODUCT PAGES HERO – UNIVERSAL MOBILE FIX
+   Covers all phones: iPhone, Android, small screens
+====================================================== */
+@media (max-width: 768px) {
+  /* ── Hero section ── */
+  .hero {
+    min-height: auto !important;
+    height: auto !important;
+    padding: 90px 16px 50px !important;
+    overflow-x: hidden !important;
+  }
+
+  /* ── Two-column → single column ── */
+  .hero-container {
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 32px !important;
+    width: 100% !important;
+    padding: 0 !important;
+  }
+
+  /* ── Left text block ── */
+  .hero-left {
+    width: 100% !important;
+    text-align: center !important;
+    align-items: center !important;
+  }
+
+  .hero-left h1 {
+    font-size: clamp(1.8rem, 7vw, 2.6rem) !important;
+    line-height: 1.2 !important;
+    margin-bottom: 12px !important;
+  }
+
+  .hero-left p,
+  .hero-sub {
+    font-size: 0.95rem !important;
+    max-width: 100% !important;
+    margin: 0 0 16px !important;
+  }
+
+  /* ── Form ── */
+  .hero-form {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: unset !important;
+    padding: 24px 16px !important;
+    margin: 0 auto !important;
+    box-sizing: border-box !important;
+    animation: none !important; /* stops float from breaking layout */
+    transform: none !important;
+  }
+
+  /* ── All inputs + select ── */
+  .hero-form input,
+  .hero-form select,
+  .hero-form textarea {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: unset !important;
+    box-sizing: border-box !important;
+    font-size: 16px !important; /* CRITICAL: prevents iOS auto-zoom */
+    padding: 12px 14px !important;
+  }
+
+  /* ── Submit button ── */
+  .hero-form button,
+  .hero-form button[type="submit"] {
+    width: 100% !important;
+    font-size: 16px !important;
+    padding: 14px !important;
+  }
+
+  /* ── Hide decorative elements ── */
+  .ai-orb {
+    display: none !important;
+  }
+}

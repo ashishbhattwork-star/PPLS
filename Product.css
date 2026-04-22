@@ -459,3 +459,64 @@ body {
     display: none !important; /* hides orb on mobile to save space */
   }
 }
+/* ===== IPHONE / SMALL SCREEN FIX ===== */
+@media (max-width: 480px) {
+  .hero {
+    padding: 90px 16px 50px !important;
+    min-height: auto !important;
+  }
+
+  .hero-container {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 30px !important;
+    width: 100% !important;
+  }
+
+  .hero-left {
+    width: 100% !important;
+    text-align: center !important;
+  }
+
+  .hero-title {
+    font-size: 2rem !important;
+    line-height: 1.2 !important;
+  }
+
+  .hero-sub {
+    font-size: 0.95rem !important;
+    max-width: 100% !important;
+    margin: 0 0 20px !important;
+  }
+
+  /* Form full width on iPhone */
+  .hero-form {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: unset !important;
+    padding: 24px 16px !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+    animation: none !important;
+  }
+
+  /* Inputs full width */
+  .hero-form input,
+  .hero-form select {
+    width: 100% !important;
+    min-width: unset !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    font-size: 16px !important; /* prevents iOS zoom on focus */
+  }
+
+  .hero-form button,
+  .hero-form button[type="submit"] {
+    width: 100% !important;
+    font-size: 16px !important;
+  }
+
+  .ai-orb {
+    display: none !important;
+  }
+}

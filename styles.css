@@ -355,18 +355,13 @@ body {
 
 .hero-section {
   position: relative;
-  height: 100vh;
+  min-height: 100vh;
   width: 100%;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 5%;
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding: 0 0 80px 5%;
   overflow: hidden;
-  background: radial-gradient(
-    circle at 50% 50%,
-    rgba(0, 242, 255, 0.05) 0%,
-    transparent 50%
-  );
 }
 
 .hero-bg-layer {
@@ -377,60 +372,159 @@ body {
   background-position: center, center;
   background-repeat: no-repeat, no-repeat;
   background-blend-mode: overlay;
-  opacity: 0.15;
+  opacity: 1;
   z-index: -1;
   pointer-events: none;
   will-change: transform;
 }
 
 .hero-content {
-  max-width: 900px;
+  position: absolute;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
   text-align: center;
   z-index: 10;
-  margin-bottom: 60px;
+  width: 100%;
+  max-width: 700px;
+  margin: 0;
+  padding: 0 20px;
 }
 
-.hero-badge {
-  display: inline-block;
-  padding: 8px 20px;
-  background: rgba(0, 242, 255, 0.05);
-  border: 1px solid rgba(0, 242, 255, 0.2);
-  border-radius: 100px;
-  color: var(--primary);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  margin-bottom: 30px;
-  animation: fadeInUp 0.8s ease-out;
+hero-badge {
+  /* also center the badge */
+  display: block;
+  text-align: center;
 }
 
 .hero-title {
-  font-size: 5.5rem;
+  font-size: 2.8rem;
   font-weight: 800;
-  line-height: 1.1;
+  line-height: 1.15;
   color: white;
-  letter-spacing: -0.04em;
-  margin-bottom: 30px;
+  letter-spacing: -0.02em;
+  margin-bottom: 20px;
   animation: fadeInUp 1s ease-out;
 }
-
 .hero-subtitle {
   font-size: 1.25rem;
-  color: #94a3b8;
+  color: #e2e8f0;
   max-width: 650px;
   margin: 0 auto 40px;
   line-height: 1.6;
-  animation: fadeInUp 1.2s ease-out;
+  animation:
+    fadeInUp 1.2s ease-out,
+    subtitleGlow 4s ease-in-out infinite 1.5s;
+
+  /* Frosted glass backdrop */
+  background: rgba(2, 6, 23, 0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 14px;
+  padding: 16px 24px;
+
+  position: relative;
+  overflow: hidden;
+}
+
+/* Animated shimmer sweep */
+.hero-subtitle::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(0, 242, 255, 0.08) 40%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(0, 242, 255, 0.08) 60%,
+    transparent 100%
+  );
+  animation: subtitleShimmer 4s ease-in-out infinite 2s;
+  border-radius: 14px;
+  pointer-events: none;
+}
+
+/* Animated border glow */
+.hero-subtitle::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  border: 1px solid transparent;
+  background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(0, 242, 255, 0.3),
+      transparent
+    )
+    border-box;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) padding-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+  animation: borderSweep 4s ease-in-out infinite 2s;
+  pointer-events: none;
+}
+
+@keyframes subtitleShimmer {
+  0% {
+    left: -100%;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    left: 140%;
+    opacity: 0;
+  }
+}
+
+@keyframes subtitleGlow {
+  0%,
+  100% {
+    box-shadow: 0 0 0px rgba(0, 242, 255, 0);
+    border-color: rgba(255, 255, 255, 0.07);
+  }
+  50% {
+    box-shadow:
+      0 0 24px rgba(0, 242, 255, 0.15),
+      0 0 60px rgba(0, 242, 255, 0.06);
+    border-color: rgba(0, 242, 255, 0.25);
+  }
+}
+
+@keyframes borderSweep {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
 }
 
 .hero-actions {
   display: flex;
-  gap: 32px;
-  justify-content: center;
-  animation: fadeInUp 1.4s ease-out;
+  gap: 16px;
+  justify-content: center; /* center the buttons */
 }
-
 .btn-primary {
   background: var(--primary);
   color: #000;
@@ -521,7 +615,7 @@ body {
 
 .scroll-indicator {
   position: absolute;
-  bottom: 40px;
+  bottom: 30px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -529,6 +623,7 @@ body {
   align-items: center;
   gap: 12px;
   color: #475569;
+  z-index: 10;
 }
 
 .scroll-indicator span {
@@ -863,7 +958,7 @@ body {
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 24px;
-  overflow: hidden;
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1180,16 +1275,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  opacity: 0;
-  transform: translateY(24px);
-  transition:
-    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.model-step.revealed .step-image-wrapper {
-  opacity: 1;
-  transform: translateY(0);
+  opacity: 1 !important;
+  transform: translateY(0) !important;
 }
 
 .step-image {
@@ -1198,9 +1285,19 @@ body {
   height: 250px;
   object-fit: cover;
   border-radius: 20px;
-  opacity: 0.85;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  opacity: 1 !important;
+  display: block !important;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
   transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.step-image:hover {
+  border-color: rgba(0, 242, 255, 0.3);
+  transform: scale(1.02);
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.7),
+    0 0 20px rgba(0, 242, 255, 0.15);
 }
 
 .model-step:hover .step-image {
@@ -2388,4 +2485,233 @@ body {
     padding: 18px;
     font-size: 14px;
   }
+}
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Space Grotesk", sans-serif;
+  background: #020617;
+  color: #fff;
+}
+
+/* SAFE IMAGE RULE */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* HERO */
+.hero {
+  position: relative;
+  height: 100vh;
+}
+
+.hero-video {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(2, 6, 23, 0.1);
+}
+
+.hero-container {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  padding: 0 80px;
+}
+
+.hero-left h1 {
+  font-size: 64px;
+}
+
+.hero-form {
+  background: rgba(15, 23, 42, 0.9);
+  padding: 30px;
+  border-radius: 20px;
+  width: 350px;
+}
+.show {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.8s ease;
+}
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.reveal.show {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.8s ease;
+}
+/* ======================================================
+   🔥 GLOBAL REVEAL FIX (FINAL)
+====================================================== */
+
+.reveal,
+.reveal-card {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+/* 👇 THIS IS THE MAIN FIX */
+.reveal.show,
+.reveal-card.show {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.8s ease;
+}
+
+/* ======================================================
+   🔥 FORCE ALL SECTIONS VISIBLE ABOVE BACKGROUND
+====================================================== */
+
+section {
+  position: relative;
+  z-index: 2;
+}
+
+/* Specific sections (extra safety) */
+.hero-section,
+.services-section,
+.strength-section,
+.model-section {
+  position: relative;
+  z-index: 5;
+}
+
+/* ======================================================
+   🔥 HARD FIX FOR HIDDEN CONTENT
+====================================================== */
+
+.service-card,
+.bento-card,
+.model-step {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+/* ======================================================
+   🔥 REMOVE OLD BROKEN CLASSES (OVERRIDE)
+====================================================== */
+
+.service-card.revealed,
+.bento-card.revealed,
+.model-step.revealed {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+/* ================= HERO BG SLIDER ================= */
+
+/* ================= HERO VIDEO FULLSCREEN FIX ================= */
+
+/* ================= HERO VIDEO FULLSCREEN FIX ================= */
+
+.hero-bg-slider {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+}
+
+/* Base state for ALL slides - hidden */
+.hero-bg-slider video.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  z-index: 0;
+  transition: opacity 1.8s ease;
+  transform: none !important; /* Kill all conflicting transforms */
+  filter: none;
+}
+
+/* Active slide - fully visible */
+.hero-bg-slider video.slide.active {
+  opacity: 1;
+  z-index: 1;
+  transform: none !important;
+  filter: none;
+}
+
+/* Outgoing slide */
+.hero-bg-slider video.slide.prev {
+  opacity: 0;
+  z-index: 0;
+  transform: none !important;
+}
+
+/* Dark overlay */
+.hero-bg-slider::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(
+    to bottom,
+    rgba(2, 6, 23, 0.55) 0%,
+    rgba(2, 6, 23, 0.25) 50%,
+    rgba(2, 6, 23, 0.7) 100%
+  );
+}
+
+/* Hero content must sit above the overlay */
+.hero-content {
+  position: absolute;
+  z-index: 10;
+}
+
+/* Content above everything */
+.hero-content {
+  position: relative;
+  z-index: 10;
+}
+
+/* ── Slide indicator dots ── */
+.hero-dots {
+  position: absolute;
+  bottom: 90px;
+  right: 48px;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.hero-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  transition: all 0.5s ease;
+  cursor: pointer;
+}
+
+.hero-dot.active {
+  height: 28px;
+  background: var(--primary);
+  border-color: var(--primary);
+  box-shadow: 0 0 12px rgba(0, 242, 255, 0.6);
 }

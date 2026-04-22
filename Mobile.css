@@ -72,29 +72,28 @@
   }
 
   /* ---------- MOBILE NAV PANEL ---------- */
+  /* MOBILE NAV BASE */
   .mobile-nav {
     position: fixed;
-    top: 64px;
+    top: 70px;
     left: 0;
     width: 100%;
+    height: calc(100vh - 70px);
+    background: #020617;
 
-    background: rgba(2, 6, 23, 0.96);
-    backdrop-filter: blur(14px);
-
+    padding: 20px;
     display: flex;
     flex-direction: column;
-    gap: 18px;
 
-    padding: 24px 20px;
+    transform: translateX(100%); /* 🔥 hidden */
+    transition: 0.3s ease;
 
-    transform: translateY(-120%);
-    transition: transform 0.35s ease;
-
-    z-index: 9999;
+    z-index: 999;
   }
 
+  /* SHOW NAV */
   .mobile-nav.active {
-    transform: translateY(0);
+    transform: translateX(0);
   }
 
   .mobile-nav a {
@@ -942,13 +941,13 @@
   .section.hero .hero-visual-side {
     display: none !important;
   }
-} /* ================= MOBILE SERVICES DROPDOWN FIX ================= */
+}
 @media (max-width: 768px) {
-  .mobile-dropdown .dropdown-menu {
+  .dropdown .dropdown-menu {
     display: none;
   }
 
-  .mobile-dropdown.active .dropdown-menu {
+  .dropdown.active .dropdown-menu {
     display: block;
   }
 }
@@ -1085,18 +1084,59 @@
     margin-bottom: 24px;
   }
 }
-@media (max-width: 900px) {
-  .it-hero {
-    padding: 100px 6% 80px;
-    min-height: auto;
-  }
+/* MOBILE DROPDOWN */
+.mobile-dropdown .dropdown-menu {
+  display: none;
+  flex-direction: column;
+  padding-left: 10px;
+}
 
-  .hero-actions {
-    flex-direction: column;
-  }
+.mobile-dropdown.active .dropdown-menu {
+  display: flex;
+}
+/* FIX MOBILE DROPDOWN BUTTON LOOK */
+.mobile-dropdown button {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 16px;
+  text-align: left;
+  padding: 15px 0;
+  font-family: "Space Grotesk", sans-serif;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
 
-  .services-grid,
-  .process-grid {
-    grid-template-columns: 1fr;
+/* Add divider like other links */
+.mobile-dropdown {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+/* MOBILE NAV DEFAULT HIDDEN */
+.mobile-nav {
+  position: fixed;
+  top: 70px; /* below header */
+  left: 0;
+  width: 100%;
+  height: calc(100vh - 70px);
+  background: #020617;
+  padding: 20px;
+
+  display: none; /* 🔥 IMPORTANT */
+  flex-direction: column;
+  z-index: 999;
+}
+
+/* SHOW ONLY WHEN ACTIVE */
+.mobile-nav.active {
+  display: flex;
+}
+/* HIDE MOBILE NAV ON DESKTOP */
+@media (min-width: 768px) {
+  .mobile-nav {
+    display: none !important;
   }
 }

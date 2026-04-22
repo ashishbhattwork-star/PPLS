@@ -1,11 +1,14 @@
 /* ======================================================
-   GLOBAL SCRIPT – SINGLE SOURCE OF TRUTH
+   GLOBAL SCRIPT – SINGLE SOURCE OF TRUTH (FINAL FIXED)
 ====================================================== */
 
-document.addEventListener("DOMContentLoaded", () => {
+/* 🔥 USE WINDOW LOAD (FIXES SLIDER ISSUE) */
+window.addEventListener("load", () => {
   loadHeader();
   loadFooter();
+
   initRevealSafe();
+  initHeroSlider(); // ✅ NOW ALWAYS WORKS
 });
 
 /* ================= LOAD HEADER ================= */
@@ -71,7 +74,7 @@ function initMobileMenu() {
   });
 
   nav.querySelectorAll(".mobile-dropdown").forEach((dropdown) => {
-    const toggle = dropdown.querySelector(".mobile-services-btn");
+    const toggle = dropdown.querySelector("button");
     if (!toggle) return;
 
     toggle.addEventListener("click", (e) => {
@@ -105,7 +108,7 @@ function initRevealSafe() {
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add("revealed");
+          entry.target.classList.add("show");
           observer.unobserve(entry.target);
         }
       });
@@ -115,15 +118,16 @@ function initRevealSafe() {
 
   elements.forEach((el) => observer.observe(el));
 }
+
 /* ======================================================
-   ORBIT SECTION – AI ENABLED CX (SAFE & ISOLATED)
+   ORBIT SECTION – AI ENABLED CX (UNCHANGED)
 ====================================================== */
 
 (function initOrbitSection() {
   const scene = document.getElementById("orbitSection");
   const svg = document.getElementById("svgCanvas");
 
-  if (!scene || !svg) return; // 🔒 page doesn't use orbit
+  if (!scene || !svg) return;
 
   const modules = [
     {
@@ -151,7 +155,7 @@ function initRevealSafe() {
       desc: "Effortless integration across legacy, cloud, and third-party utility systems.",
     },
     {
-      key: "workflow", // 🔥 FIXED
+      key: "workflow",
       title: "Workflow Automation",
       icon: "fa-robot",
       desc: "End-to-end automation of operational workflows using AI-driven orchestration.",
@@ -198,7 +202,6 @@ function initRevealSafe() {
       const x = cx + radiusX * Math.cos(angle);
       const y = cy + radiusY * Math.sin(angle);
 
-      // SVG beam
       const line = document.createElementNS(
         "http://www.w3.org/2000/svg",
         "line",
@@ -210,15 +213,10 @@ function initRevealSafe() {
       line.setAttribute("class", "beam");
       svg.appendChild(line);
 
-      // Tile
       const tile = document.createElement("div");
       tile.className = "sub-topic-tile";
-      tile.dataset.key = mod.key;
-
       tile.innerHTML = `
-        <div class="tile-icon-box">
-          <i class="fas ${mod.icon}"></i>
-        </div>
+        <div class="tile-icon-box"><i class="fas ${mod.icon}"></i></div>
         <div class="tile-title">${mod.title}</div>
       `;
 
@@ -227,53 +225,97 @@ function initRevealSafe() {
 
       scene.appendChild(tile);
 
-      // Attach interactions
-      attachOrbitEvents(tile, line, mod);
+      tile.addEventListener("mouseenter", () => line.classList.add("active"));
+      tile.addEventListener("mouseleave", () =>
+        line.classList.remove("active"),
+      );
     });
   }
 
   window.addEventListener("load", drawOrbit);
   window.addEventListener("resize", drawOrbit);
-
-  /* ======================================================
-     ORBIT DETAIL PANEL – DESKTOP + MOBILE
-  ====================================================== */
-
-  const panel = document.getElementById("detailPanel");
-  const titleEl = document.getElementById("panelTitle");
-  const descEl = document.getElementById("panelDesc");
-
-  function showPanel(mod) {
-    if (!panel || !titleEl || !descEl) return;
-
-    titleEl.textContent = mod.title;
-    descEl.textContent = mod.desc;
-    panel.classList.add("show");
-  }
-
-  function hidePanel() {
-    panel?.classList.remove("show");
-  }
-
-  function attachOrbitEvents(tile, line, mod) {
-    /* Desktop hover */
-    tile.addEventListener("mouseenter", () => {
-      line.classList.add("active");
-      showPanel(mod);
-    });
-
-    tile.addEventListener("mouseleave", () => {
-      line.classList.remove("active");
-      hidePanel();
-    });
-
-    /* Mobile tap */
-    tile.addEventListener("click", (e) => {
-      e.stopPropagation();
-      showPanel(mod);
-    });
-  }
-
-  /* Close panel on outside tap (mobile UX) */
-  document.addEventListener("click", hidePanel);
 })();
+
+/* ======================================================
+   HERO BACKGROUND SLIDER (FINAL WORKING)
+====================================================== */
+
+function initHeroSlider() {
+  const slides = document.querySelectorAll(".hero-bg-slider .slide");
+  if (!slides.length) return;
+
+  let index = 0;
+
+  setInterval(() => {
+    slides.forEach((slide) => {
+      slide.classList.remove("active", "prev");
+    });
+
+    const prevIndex = index;
+    index = (index + 1) % slides.length;
+
+    slides[index].classList.add("active");
+    slides[prevIndex].classList.add("prev");
+  }, 5000);
+}
+function initHeroSlider() {
+  const slides = document.querySelectorAll(".hero-bg-slider .slide");
+  const dotsContainer = document.getElementById("heroDots");
+  if (!slides.length) return;
+
+  let current = 0;
+  let timer = null;
+
+  // Build dots
+  slides.forEach((_, i) => {
+    const dot = document.createElement("div");
+    dot.className = "hero-dot" + (i === 0 ? " active" : "");
+    dot.addEventListener("click", () => goTo(i));
+    dotsContainer?.appendChild(dot);
+  });
+
+  function getDots() {
+    return document.querySelectorAll(".hero-dot");
+  }
+
+  function goTo(next) {
+    const dots = getDots();
+
+    slides[current].classList.remove("active");
+    slides[current].classList.add("prev");
+    dots[current]?.classList.remove("active");
+
+    // Pause outgoing video
+    if (slides[current].tagName === "VIDEO") {
+      slides[current].pause();
+    }
+
+    const prevIndex = current;
+    setTimeout(() => {
+      slides[prevIndex]?.classList.remove("prev");
+    }, 1800);
+
+    current = next;
+    slides[current].classList.add("active");
+    dots[current]?.classList.add("active");
+
+    // Play incoming video
+    if (slides[current].tagName === "VIDEO") {
+      slides[current].play();
+    }
+  }
+
+  function advance() {
+    goTo((current + 1) % slides.length);
+  }
+
+  // Auto-play
+  timer = setInterval(advance, 5000);
+
+  // Pause on hover
+  const slider = document.querySelector(".hero-bg-slider");
+  slider?.addEventListener("mouseenter", () => clearInterval(timer));
+  slider?.addEventListener("mouseleave", () => {
+    timer = setInterval(advance, 5000);
+  });
+}

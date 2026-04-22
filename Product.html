@@ -4,42 +4,151 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PPLS | AI Enabled CX For Utilities</title>
-
-    <!-- Global CSS -->
     <link rel="stylesheet" href="styles.css" />
-
-    <!-- Fonts -->
     <link
       href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap"
       rel="stylesheet"
     />
-
-    <!-- Product Page CSS -->
     <link rel="stylesheet" href="Product.css" />
     <link rel="stylesheet" href="Mobile.css" />
   </head>
 
-  <script src="script.js"></script>
   <body>
-    <!-- ================= HEADER ================= -->
     <div id="header"></div>
 
-    <!-- ================= HERO ================= -->
+    <!-- HERO -->
     <section class="hero">
-      <h1 class="hero-title reveal">AI Enabled CX For Utilities</h1>
+      <!-- VIDEO BACKGROUND -->
+      <video class="hero-video" autoplay muted loop playsinline>
+        <source src="Assets/shock.mp4" type="video/mp4" />
+      </video>
+      <div class="hero-overlay"></div>
 
-      <div class="ai-orb float">
-        <span></span>
-        <span></span>
-        <span></span>
+      <div class="hero-container">
+        <!-- LEFT -->
+        <div class="hero-left">
+          <h1 class="hero-title reveal">AI Enabled CX For Utilities</h1>
+          <div class="ai-orb float">
+            <span></span>
+
+            <span></span>
+          </div>
+          <p class="hero-sub reveal delay">
+            Intelligent automation, insights, and orchestration for modern
+            utilities
+          </p>
+        </div>
+
+        <!-- RIGHT FORM -->
+        <div class="hero-form">
+          <h3>Start your free trial</h3>
+          <form
+            id="trialForm"
+            style="display: flex; flex-direction: column; gap: 14px"
+          >
+            <input type="text" name="name" placeholder="Full Name" required />
+            <input
+              type="email"
+              name="email"
+              placeholder="Work Email"
+              required
+            />
+            <input
+              type="text"
+              name="company"
+              placeholder="Company Name"
+              required
+            />
+            <select name="company_size" required>
+              <option value="" disabled selected>Company Size</option>
+              <option value="1-10">1–10 employees</option>
+              <option value="11-50">11–50 employees</option>
+              <option value="51-200">51–200 employees</option>
+              <option value="200+">200+ employees</option>
+            </select>
+            <input
+              type="tel"
+              name="phone"
+              placeholder="Phone Number"
+              required
+            />
+            <button type="submit" id="trialBtn">GET STARTED</button>
+          </form>
+        </div>
       </div>
-
-      <p class="hero-sub reveal delay">
-        Intelligent automation, insights, and orchestration for modern utilities
-      </p>
+      <!-- END .hero-container -->
     </section>
+    <!-- END .hero -->
 
-    <!-- ================= FEATURES ================= -->
+    <!-- ===== SUCCESS POPUP ===== -->
+    <div
+      id="trialPopup"
+      style="
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 99999;
+        background: rgba(0, 0, 0, 0.65);
+        backdrop-filter: blur(6px);
+        align-items: center;
+        justify-content: center;
+      "
+    >
+      <div
+        style="
+          background: linear-gradient(135deg, #0f172a, #1e293b);
+          border: 1px solid rgba(0, 242, 255, 0.2);
+          border-radius: 24px;
+          padding: 50px 40px;
+          max-width: 420px;
+          width: 90%;
+          text-align: center;
+          box-shadow:
+            0 30px 80px rgba(0, 0, 0, 0.6),
+            0 0 40px rgba(0, 242, 255, 0.1);
+        "
+      >
+        <div style="font-size: 3rem; margin-bottom: 16px">✅</div>
+        <h2
+          style="
+            color: #fff;
+            font-size: 1.6rem;
+            margin-bottom: 12px;
+            font-weight: 800;
+          "
+        >
+          You're In!
+        </h2>
+        <p
+          style="
+            color: #94a3b8;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+          "
+        >
+          Thanks for signing up! Our team will reach out to you shortly to get
+          your free trial started.
+        </p>
+        <button
+          onclick="closeTrialPopup()"
+          style="
+            background: linear-gradient(135deg, #00f2ff, #0066ff);
+            color: #000;
+            font-weight: 800;
+            padding: 14px 36px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 1rem;
+          "
+        >
+          Close
+        </button>
+      </div>
+    </div>
+
+    <!-- FEATURES -->
     <section class="features">
       <div class="feature-card" data-scroll>
         <h3>System Navigation Guide</h3>
@@ -48,7 +157,6 @@
           with an AI co-pilot for every system.
         </p>
       </div>
-
       <div class="feature-card" data-scroll>
         <h3>Customer Profile</h3>
         <p>
@@ -56,7 +164,6 @@
           hyper-personalized utility services.
         </p>
       </div>
-
       <div class="feature-card" data-scroll>
         <h3>Workflow Automation Engine</h3>
         <p>
@@ -64,7 +171,6 @@
           outage management using AI.
         </p>
       </div>
-
       <div class="feature-card" data-scroll>
         <h3>AI Business Intelligence</h3>
         <p>
@@ -72,7 +178,6 @@
           automatically to your operational role.
         </p>
       </div>
-
       <div class="feature-card" data-scroll>
         <h3>Seamless Integration</h3>
         <p>
@@ -104,29 +209,120 @@
       <div class="feature-card" data-scroll>
         <h3>Process Flow Mapping</h3>
         <p>
-          Process Flow Mapping — See your utility workflows mapped intelligently
-          to instantly spot bottlenecks and automate complex operational
-          procedures.
+          See your utility workflows mapped intelligently to instantly spot
+          bottlenecks and automate complex operational procedures.
+        </p>
+      </div>
+      <div class="feature-card" data-scroll>
+        <h3>Multiple Language Support</h3>
+        <p>
+          Our platform supports multiple languages, enabling seamless
+          communication, enhanced user experience, and global accessibility
+          across diverse audiences and regions.
+        </p>
+      </div>
+      <div class="feature-card" data-scroll>
+        <h3>Data In Graphical Format</h3>
+        <p>
+          Transform complex data into intuitive graphical formats, enabling
+          faster insights, better decision-making, and improved visualization
+          for users across platforms.
         </p>
       </div>
     </section>
-    <!-- ================= FOOTER ================= -->
+
     <div id="footer"></div>
-    <!-- ================= JS ================= -->
+
     <script src="Product.js"></script>
 
-    <!-- Header & Footer Loader -->
     <script>
+      // HEADER
       fetch("header.html")
-        .then((res) => res.text())
+        .then((r) => r.text())
         .then((data) => {
           document.getElementById("header").innerHTML = data;
+          const menuBtn = document.getElementById("mobileMenuBtn");
+          const mobileNav = document.getElementById("mobileNav");
+          if (menuBtn && mobileNav) {
+            menuBtn.addEventListener("click", () =>
+              mobileNav.classList.toggle("active"),
+            );
+          }
+          document
+            .querySelectorAll(".mobile-dropdown button")
+            .forEach((btn) => {
+              btn.addEventListener("click", function (e) {
+                e.stopPropagation();
+                this.parentElement.classList.toggle("active");
+              });
+            });
+          document.addEventListener("click", () => {
+            document.querySelectorAll(".mobile-dropdown").forEach((drop) => {
+              drop.classList.remove("active");
+            });
+          });
         });
 
+      // FOOTER
       fetch("footer.html")
-        .then((res) => res.text())
+        .then((r) => r.text())
         .then((data) => {
           document.getElementById("footer").innerHTML = data;
+        });
+
+      // FORM SUBMIT
+      (function () {
+        const form = document.getElementById("trialForm");
+        const btn = document.getElementById("trialBtn");
+        if (!form || form.dataset.bound) return;
+        form.dataset.bound = "true";
+
+        form.addEventListener("submit", async function (e) {
+          e.preventDefault();
+          btn.textContent = "Sending...";
+          btn.disabled = true;
+
+          const formData = new FormData(form);
+          formData.append("_captcha", "false");
+          formData.append("_template", "table");
+          formData.append(
+            "_subject",
+            "New Free Trial Request – PPLS Consultancy",
+          );
+
+          try {
+            const res = await fetch(
+              "https://formsubmit.co/ajax/sandeep@pplsconsultancy.com",
+              {
+                method: "POST",
+                headers: { Accept: "application/json" },
+                body: formData,
+              },
+            );
+
+            if (res.ok) {
+              form.reset();
+              document.getElementById("trialPopup").style.display = "flex";
+            } else {
+              alert("Submission failed. Please try again.");
+            }
+          } catch (err) {
+            alert("Network error. Please check your connection and try again.");
+          }
+
+          btn.textContent = "GET STARTED";
+          btn.disabled = false;
+        });
+      })();
+
+      // POPUP CLOSE
+      function closeTrialPopup() {
+        document.getElementById("trialPopup").style.display = "none";
+      }
+      document
+        .getElementById("trialPopup")
+        .addEventListener("click", function (e) {
+          if (e.target === this) closeTrialPopup();
         });
     </script>
   </body>

@@ -6,28 +6,39 @@
   <!-- DESKTOP NAV -->
   <nav class="nav desktop-nav">
     <a href="index.html">Home</a>
-    <a href="Product.html">Products</a>
 
-    <!-- SERVICES DROPDOWN -->
+    <!-- PRODUCTS -->
+    <div class="nav-dropdown desktop-dropdown">
+      <button class="nav-link dropdown-toggle" type="button">
+        Products <span class="chevron">▾</span>
+      </button>
+      <div class="dropdown-menu">
+        <a href="Product.html">AI Enabled CX</a>
+        <a href="hrms.html">HRMS</a>
+        <a href="ivr-tool.html">SmartSlot</a>
+        <a href="medica-ai.html">MedicaAI</a>
+        <a href="askme-ai.html">AskMeAI</a>
+      </div>
+    </div>
+
+    <!-- SERVICES -->
     <div class="nav-dropdown desktop-dropdown">
       <button class="nav-link dropdown-toggle" type="button">
         Services <span class="chevron">▾</span>
       </button>
-
       <div class="dropdown-menu">
-        <a href="services.html" class="dropdown-main">Utilities</a>
+        <a href="services.html">Utilities</a>
         <a href="It-Consulting.html">IT Consulting</a>
         <a href="AISolutions.html">AI Solutions</a>
         <a href="WebDev.html">Web Development</a>
       </div>
     </div>
 
-    <!-- MOVED HERE -->
     <a href="about.html">About Us</a>
     <a href="contact.html">Contact Us</a>
   </nav>
 
-  <!-- MOBILE HAMBURGER -->
+  <!-- MOBILE MENU BUTTON -->
   <div class="mobile-menu-btn" id="mobileMenuBtn">
     <span></span>
     <span></span>
@@ -38,21 +49,30 @@
 <!-- MOBILE NAV -->
 <div class="mobile-nav" id="mobileNav">
   <a href="index.html">Home</a>
-  <a href="Product.html">Products</a>
 
-  <!-- MOBILE SERVICES -->
+  <!-- PRODUCTS -->
   <div class="nav-dropdown mobile-dropdown">
-    <button class="mobile-services-btn" type="button">
-      Services <span class="chevron">▾</span>
-    </button>
-
+    <button type="button">Products <span class="chevron">▾</span></button>
     <div class="dropdown-menu">
-      <a href="services.html" class="dropdown-main">Utilities</a>
+      <a href="Product.html">AI Enabled CX</a>
+      <a href="hrms.html">HRMS</a>
+      <a href="ivr-tool.html">SmartSlot</a>
+      <a href="medica-ai.html">MedicaAI</a>
+      <a href="askme-ai.html">AskMeAI</a>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <div class="nav-dropdown mobile-dropdown">
+    <button type="button">Services <span class="chevron">▾</span></button>
+    <div class="dropdown-menu">
+      <a href="services.html">Utilities</a>
       <a href="It-Consulting.html">IT Consulting</a>
       <a href="AISolutions.html">AI Solutions</a>
       <a href="WebDev.html">Web Development</a>
     </div>
   </div>
+
   <a href="about.html">About Us</a>
   <a href="contact.html">Contact Us</a>
 </div>

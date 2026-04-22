@@ -15,8 +15,8 @@
 
     <style>
       :root {
-        --text: #0e1a2b;
-        --muted: #000000;
+        --text: #ffffff;
+        --muted: #ffffff;
         --bg1: #955e5e;
         --bg2: #fff1dc;
       }
@@ -311,12 +311,30 @@
     <!-- LOAD HEADER & FOOTER -->
     <script>
       fetch("header.html")
-        .then((res) => res.text())
-        .then((data) => (document.getElementById("header").innerHTML = data));
+        .then((r) => r.text())
+        .then((data) => {
+          document.getElementById("header").innerHTML = data;
 
-      fetch("footer.html")
-        .then((res) => res.text())
-        .then((data) => (document.getElementById("footer").innerHTML = data));
+          const menuBtn = document.getElementById("mobileMenuBtn");
+          const mobileNav = document.getElementById("mobileNav");
+
+          menuBtn.addEventListener("click", () => {
+            mobileNav.classList.toggle("active");
+          });
+
+          document
+            .querySelectorAll(".mobile-dropdown button")
+            .forEach((btn) => {
+              btn.addEventListener("click", function () {
+                this.parentElement.classList.toggle("active");
+              });
+            });
+
+          // 🔥 THIS LINE YOU ASKED ABOUT
+          document.querySelectorAll(".mobile-dropdown").forEach((drop) => {
+            drop.addEventListener("click", (e) => e.stopPropagation());
+          });
+        });
     </script>
   </body>
 </html>

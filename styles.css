@@ -6,6 +6,10 @@
   font-family: "Segoe UI", sans-serif;
 }
 
+html {
+  overflow-x: hidden;
+}
+
 body {
   font-family: var(--font-main);
   background-color: var(--bg-dark);
@@ -362,6 +366,84 @@ body {
   justify-content: flex-start;
   padding: 0 0 80px 5%;
   overflow: hidden;
+}
+
+/* ================= ON-SITE ENGAGEMENT SECTION ================= */
+.onsite-section {
+  padding: 60px 8%;
+  background: radial-gradient(circle at top, #0a0f1e, #000);
+  position: relative;
+  overflow: hidden;
+}
+
+.onsite-carousel-wrapper {
+  margin-top: 50px;
+  overflow: hidden;
+  overflow-x: hidden;
+}
+
+/* Team carousel (shared with about page, used for onsite on home) */
+.team-carousel-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.team-carousel {
+  display: flex;
+  gap: 32px;
+  width: max-content;
+}
+
+.team-carousel.auto-scroll {
+  animation: onsiteImageScroll 90s linear infinite;
+}
+
+.team-carousel-wrapper:hover .auto-scroll {
+  animation-play-state: paused;
+}
+
+/* Event / image cards */
+.event-card {
+  min-width: 320px;
+  height: 220px;
+  overflow: hidden;
+  border-radius: 22px;
+  flex-shrink: 0;
+}
+
+.event-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.onsite-carousel {
+  display: flex;
+  gap: 32px;
+  width: max-content;
+}
+
+.onsite-carousel.auto-scroll {
+  animation: onsiteImageScroll 90s linear infinite;
+}
+
+@keyframes onsiteImageScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.onsite-carousel-wrapper:hover .auto-scroll {
+  animation-play-state: paused;
+}
+
+@media (max-width: 768px) {
+  .onsite-section {
+    padding: 40px 16px;
+  }
+  .event-card {
+    min-width: 260px;
+    height: 180px;
+  }
 }
 
 .hero-bg-layer {
@@ -848,7 +930,7 @@ hero-badge {
 
 .section-header {
   max-width: 800px;
-  margin: 0 auto 80px;
+  margin: 0 auto 40px;
   text-align: center;
 }
 
@@ -1244,7 +1326,7 @@ hero-badge {
 
 .header-floating {
   text-align: center;
-  margin-bottom: 80px;
+  margin-bottom: 50px;
 }
 
 #detailPanel {
@@ -1676,7 +1758,7 @@ hero-badge {
 
 /* HARD FIX: remove gap before footer */
 .working-model {
-  padding-bottom: 100px;
+  padding-bottom: 60px;
   margin-bottom: 0 !important;
 }
 
@@ -1758,7 +1840,7 @@ hero-badge {
 }
 /* ================= TEAM SECTION ================= */
 .team-section {
-  padding: 100px 8%;
+  padding: 60px 8%;
   text-align: center;
 }
 
@@ -2146,7 +2228,8 @@ hero-badge {
   display: none;
 }
 
-.mobile-nav .nav-dropdown.active .dropdown-menu {
+.mobile-nav .nav-dropdown.active .dropdown-menu,
+.mobile-nav .nav-dropdown.open .dropdown-menu {
   display: block;
 }
 /* ================= NAV LAYOUT HARD FIX ================= */
@@ -2690,13 +2773,7 @@ section {
 
 /* ── Slide indicator dots ── */
 .hero-dots {
-  position: absolute;
-  bottom: 90px;
-  right: 48px;
-  z-index: 20;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  display: none;
 }
 
 .hero-dot {

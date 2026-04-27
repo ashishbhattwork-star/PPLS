@@ -1088,11 +1088,35 @@
 .mobile-dropdown .dropdown-menu {
   display: none;
   flex-direction: column;
-  padding-left: 10px;
+  padding-left: 16px;
+  padding-top: 4px;
+  padding-bottom: 8px;
 }
 
-.mobile-dropdown.active .dropdown-menu {
-  display: flex;
+.mobile-dropdown.open .dropdown-menu {
+  display: flex !important;
+}
+
+/* Ensure dropdown links are always visible when open */
+.mobile-dropdown.open .dropdown-menu a {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  font-size: 15px;
+  color: #94a3b8;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  text-decoration: none;
+}
+
+.mobile-dropdown.open .dropdown-menu a:hover {
+  color: var(--primary);
+}
+
+/* Rotate chevron when open */
+.mobile-dropdown.open .chevron {
+  transform: rotate(180deg);
+  display: inline-block;
 }
 /* FIX MOBILE DROPDOWN BUTTON LOOK */
 .mobile-dropdown button {

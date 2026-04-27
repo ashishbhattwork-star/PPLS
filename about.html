@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>About Us | PPLS Consultancy</title>
+    <link rel="canonical" href="https://pplsconsultancy.com/about" />
     <link rel="stylesheet" href="styles.css" />
       <link
       href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap"
@@ -270,7 +271,7 @@
       /* ===== EVENT AUTO SCROLL ===== */
 
       .auto-scroll {
-        animation: scrollEvents 25s linear infinite;
+        animation: scrollEvents 90s linear infinite;
       }
 
       @keyframes scrollEvents {
@@ -356,7 +357,12 @@
 
       /* Auto scroll */
       .auto-scroll {
-        animation: onsiteImageScroll 35s linear infinite;
+        animation: onsiteImageScroll 90s linear infinite;
+      }
+
+      /* Memories has 7 cards (vs 6 for On-Site) — duration scaled to same visual speed */
+      .memories-scroll {
+        animation: onsiteImageScroll 105s linear infinite;
       }
 
       @keyframes onsiteImageScroll {
@@ -442,7 +448,7 @@
       <h2 class="reveal">Our <span>Memories</span></h2>
 
       <div class="team-carousel-wrapper">
-        <div class="team-carousel auto-scroll">
+        <div class="team-carousel auto-scroll memories-scroll">
           <div class="event-card"><img src="Assets/newIMG.JPG.jpeg" /></div>
           <div class="event-card"><img src="Assets/event2.jpeg" /></div>
           <div class="event-card"><img src="Assets/newIMG3.JPG" /></div>
@@ -516,8 +522,9 @@
       });
     </script>
     <script>
-      const carousel = document.querySelector(".team-carousel");
-      carousel.innerHTML += carousel.innerHTML;
+      document.querySelectorAll(".team-carousel").forEach(function(carousel) {
+        carousel.innerHTML += carousel.innerHTML;
+      });
     </script>
   </body>
 </html>

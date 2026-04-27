@@ -9,6 +9,7 @@ window.addEventListener("load", () => {
 
   initRevealSafe();
   initHeroSlider(); // ✅ NOW ALWAYS WORKS
+  initOnsiteCarousel(); // ✅ Duplicate carousel for infinite scroll
 });
 
 /* ================= LOAD HEADER ================= */
@@ -318,4 +319,15 @@ function initHeroSlider() {
   slider?.addEventListener("mouseleave", () => {
     timer = setInterval(advance, 5000);
   });
+}
+
+/* ======================================================
+   ON-SITE ENGAGEMENT CAROUSEL – INFINITE SCROLL
+====================================================== */
+function initOnsiteCarousel() {
+  const carousel = document.getElementById("onsiteCarousel");
+  if (!carousel) return;
+
+  // Duplicate content for seamless infinite scroll
+  carousel.innerHTML += carousel.innerHTML;
 }
